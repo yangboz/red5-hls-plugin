@@ -50,14 +50,16 @@ sudo ln /usr/bin/gcc-4.6 /usr/bin/gcc -s
 sudo ln /usr/bin/g++-4.6 /usr/bin/g++ -s
 
 2 - Download red5 (trunk version)
-wget "https://builds.apache.org/job/Red5%20Trunk/lastSuccessfulBuild/artifact/trunk/target/red5-server-1.0.2-RC3-server.tar.gz"
+//wget "https://builds.apache.org/job/Red5%20Trunk/lastSuccessfulBuild/artifact/trunk/target/red5-server-1.0.2-RC3-server.tar.gz"
+
+sudo apt-get install red5-server
 
 3 - Build xuggler
 git clone git://github.com/xuggle/xuggle-xuggler.git
 cd xuggle-xuggler
 ant
-cp /home/red5/xuggle-xuggler/dist/lib/xuggle-xuggler-noarch.jar /home/red5/red5-server-1.0.2-RC3/plugins/
-cp /home/red5/xuggle-xuggler/dist/lib/xuggle-xuggler-arch-x86_64-unknown-linux-gnu.jar /home/red5/red5-server-1.0.2-RC3/plugins/
+cp /dist/lib/xuggle-xuggler-noarch.jar /var/lib/red5/plugins/
+cp /dist/lib/xuggle-xuggler-arch-x86_64-unknown-linux-gnu.jar /var/lib/red5/plugins/
 
 4 - Build Red5 HLS plugin
 git clone https://github.com/mondain/red5-hls-plugin.git
@@ -73,8 +75,8 @@ mvn -Dmaven.test.skip=true
 
 
 5 - Deploy plugin and example application to red5
-cp /home/red5/red5-hls-plugin/example/target/hlsapp-1.1.war /home/red5/red5-server-1.0.2-RC3/webapps/
-cp /home/red5/red5-hls-plugin/plugin/target/hls-plugin-1.1.jar  /home/red5/red5-server-1.0.2-RC3/plugins/
+cp target/hlsapp-1.1.war /var/lib/red5/webapps/
+cp target/hls-plugin-1.1.jar  /var/lib/red5/plugins/
 
 6 - Change queueCapacity to 20 in file /home/red5/red5-server-1.0.2-RC3/conf/red5-core.xml
 
